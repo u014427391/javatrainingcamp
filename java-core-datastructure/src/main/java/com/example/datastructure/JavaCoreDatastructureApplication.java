@@ -8,6 +8,8 @@ public class JavaCoreDatastructureApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(JavaCoreDatastructureApplication.class, args);
+
+
     }
 
 }
