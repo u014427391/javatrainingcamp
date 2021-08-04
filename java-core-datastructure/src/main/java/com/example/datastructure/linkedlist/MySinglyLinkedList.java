@@ -31,7 +31,7 @@ public class MySinglyLinkedList<T> {
         if (list.head == null) {
             list.head = newNode;
         }
-        else { // 其它情况直接在链接后面附加上新节点
+        else { // 其它情况直接在链表后面附加上新节点
             Node<T> currentNode = list.head;
             while (currentNode.next != null) {
                 currentNode = currentNode.next;
