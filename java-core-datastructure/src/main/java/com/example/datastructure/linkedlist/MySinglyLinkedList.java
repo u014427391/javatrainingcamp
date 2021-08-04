@@ -228,6 +228,17 @@ public class MySinglyLinkedList<T> {
         removeByValue(list , 10);
         // 打印验证 ，0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
         printLinkedList(list);
+
+        // 重置链表
+        list = buildLinedList();
+        Node headNode = list.head;
+        if (search(headNode , 5)) {
+            System.out.println("查找到对应的节点");
+        }
+        else {
+            System.out.println("不能查找到对应节点");
+        }
+
     }
 
 }
