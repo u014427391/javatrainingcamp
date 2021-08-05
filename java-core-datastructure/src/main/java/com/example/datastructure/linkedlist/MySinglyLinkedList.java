@@ -80,7 +80,7 @@ public class MySinglyLinkedList<T> {
                 list.head = currentNode.next;
             }
             else {
-                while (currentNode.next != null) {
+                while (currentNode != null) {
                     // 找到移除节点要节点位置
                     if (counter == pos) {
                         prevNode.next = currentNode.next;
