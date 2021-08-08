@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example.datastructure</groupId>
-    <artifactId>java-core-datastructure</artifactId>
+    <groupId>com.example.core</groupId>
+    <artifactId>java-core-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-core-datastructure</name>
+    <name>java-core-example</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -68,7 +68,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.2.1.RELEASE</version>
                 <configuration>
-                    <mainClass>com.example.datastructure.JavaCoreDatastructureApplication</mainClass>
+                    <mainClass>com.example.core.example.JavaCoreExampleApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
