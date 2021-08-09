@@ -12,6 +12,13 @@ public class User {
         return "hello world!";
     }
 
+    private String priToString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     @Override
     public String toString() {
         return "User{" +

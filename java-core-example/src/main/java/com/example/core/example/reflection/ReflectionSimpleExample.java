@@ -16,7 +16,7 @@ public class ReflectionSimpleExample {
         User user = new User();
         System.out.println(user.toString());
 
-        Class<?> cls = Class.forName("com.example.core.example.reflection.User");
+        Class<?> cls = Class.forName("com.example.core.example.reflection.domain.User");
         Object obj = cls.newInstance();
         System.out.println(obj);
 
