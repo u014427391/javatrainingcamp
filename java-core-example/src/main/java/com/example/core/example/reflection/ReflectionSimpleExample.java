@@ -4,18 +4,19 @@ import com.example.core.example.reflection.domain.User;
 
 import java.lang.reflect.Field;
 
-public class ReflectionExample {
+public class ReflectionSimpleExample {
 
 
     public static void main(String[] args) throws Exception{
         reflectionSimpleExample();
+
     }
 
     public static void reflectionSimpleExample() throws Exception{
         User user = new User();
         System.out.println(user.toString());
 
-        Class<?> cls = Class.forName("com.example.core.example.reflection.domain.User");
+        Class<?> cls = Class.forName("com.example.core.example.reflection.User");
         Object obj = cls.newInstance();
         System.out.println(obj);
 
@@ -23,4 +24,7 @@ public class ReflectionExample {
         System.out.println(field.get(obj));
 
     }
+
+
+
 }
