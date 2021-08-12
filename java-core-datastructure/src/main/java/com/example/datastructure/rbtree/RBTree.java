@@ -1,5 +1,6 @@
 package com.example.datastructure.rbtree;
 
+import com.sun.org.apache.regexp.internal.RE;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -130,7 +131,6 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
 
     /**
      * 新增红黑树节点操作 . <br>
-     * @Author mazq
      * @Date 2021/08/12 16:31
      * @Param [key, value]
      * @return void
@@ -170,6 +170,12 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
         fixAfterInsertion(node);
     }
 
+    /**
+     * 新增节点之后，红黑树的调整操作 <br>
+     * @Date 2021/08/12 17:36
+     * @Param [node]
+     * @return void
+     */
     private void fixAfterInsertion( RBNode<K,V> node) {
         node.color = RED;
         while (node != null && node != root && node.parent.color == RED) {
@@ -212,6 +218,12 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
         }
     }
 
+    /**
+     * 删除节点操作. <br>
+     * @Date 2021/08/12 17:35
+     * @Param [node]
+     * @return void
+     */
     public void deleteEntry(RBNode<K,V> node) {
         if (node.left != null && node.right != null) {
             RBNode<K,V> s = predecessor(node);
@@ -223,14 +235,118 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
         RBNode<K,V> replacement = node.left != null? node.left : node.right;
 
         if (replacement != null) {
+            replacement.parent = node.parent;
+            if (node.parent == null ){
+                root = replacement;
+            }
+            else if (node == node.parent.left){
+                node.parent.left = replacement;
+            }
+            else {
+                node.parent.right = replacement;
+            }
 
+            node.left = node.right = node.parent = null;
+
+            if (node.color == BLACK) {
+                fixAfterDeletion(replacement);
+            }
         }
         else if (node.parent == null) {
             root = null;
         }
         else {
 
+            if (node.color == BLACK) {
+                fixAfterDeletion(replacement);
+            }
+
+            if (node.parent != null) {
+                if (node == node.parent.left) {
+                    node.parent.left = null;
+                } else if (node == node.parent.right) {
+                    node.parent.right = null;
+                }
+                node.parent = null;
+            }
+
         }
+    }
+
+    /**
+     * 删除节点之后，红黑树的调整操作 <br>
+     * @Date 2021/08/12 17:36
+     * @Param [node]
+     * @return void
+     */
+    private void fixAfterDeletion (RBNode<K,V> node) {
+        while (node != root && colorOf(node) == BLACK) {
+            if (node == leftOf(parentOf(node))) {
+                RBNode<K,V> sib = rightOf(parentOf(node));
+
+                if (colorOf(sib) == RED) {
+                    setColor(sib , BLACK);
+                    setColor(parentOf(node) , RED);
+                    leftRotate(parentOf(node));
+                    // 找到真正的兄弟节点
+                    sib = rightOf(parentOf(node));
+                }
+
+                if (colorOf(leftOf(node)) == BLACK && colorOf(rightOf(node)) == BLACK) {
+                    // 情况比较复杂
+                    setColor(sib , RED);
+                    // 往上递归
+                    node = parentOf(node);
+                }
+                else {
+                    if (colorOf(rightOf(sib)) == BLACK) {
+                        setColor(sib , RED);
+                        setColor(leftOf(sib) , BLACK);
+                        rightRotate(sib);
+                        sib = rightOf(parentOf(node));
+                    }
+                    setColor(sib , colorOf(parentOf(node)));
+                    setColor(parentOf(node) , BLACK);
+                    setColor(rightOf(sib) , BLACK);
+                    leftRotate(parentOf(node));
+                    node = root;
+                }
+
+            }
+
+            else {
+                RBNode<K,V> sib = leftOf(parentOf(node));
+
+                if (colorOf(sib) == RED) {
+                    setColor(sib , BLACK);
+                    setColor(parentOf(node) , RED);
+                    rightRotate(parentOf(node));
+                    // 找到真正的兄弟节点
+                    sib = leftOf(parentOf(node));
+                }
+
+                if (colorOf(rightOf(node)) == BLACK && colorOf(leftOf(node)) == BLACK) {
+                    // 情况比较复杂
+                    setColor(sib , RED);
+                    // 往上递归
+                    node = parentOf(node);
+                }
+                else {
+                    if (colorOf(leftOf(sib)) == BLACK) {
+                        setColor(sib , RED);
+                        setColor(rightOf(sib) , BLACK);
+                        leftRotate(sib);
+                        sib = leftOf(parentOf(node));
+                    }
+                    setColor(sib , colorOf(parentOf(node)));
+                    setColor(parentOf(node) , BLACK);
+                    setColor(leftOf(sib) , BLACK);
+                    rightRotate(parentOf(node));
+                    node = root;
+                }
+            }
+        }
+        setColor(node , BLACK);
     }
 
     /**
