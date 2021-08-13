@@ -59,8 +59,9 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
             if (pr.left != null) {
                 pr.left.parent = p;
             }
-
             // 2. p有父节点r时，将p的父节点赋给pr的父节点，同时更新r的左子节点或者右子节点为pr
+            // 不管p是否存在父节点，我们都设置p的父节点也为 pr的父节点
+            pr.parent = p.parent;
             if (p.parent == null) {
                 // 直接设置root节点为pr
                 this.root = pr;
@@ -109,6 +110,7 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
             }
 
             // 2. p有父节点r时，将p的父节点赋给pl的父节点，同时更新r的左子节点或者右子节点为pl
+            pl.parent = p.parent;
             if (p.parent == null) {
                 // 直接设置root节点为pr
                 this.root = pl;
@@ -196,10 +198,10 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
 
                     // case2 ： 叔叔节点是黑色，且新增节点是右子节点
                     if (node == rightOf(parentOf(node))) {
-                        // 从父节点处做左旋
-                        leftRotate(parentOf(node));
-                        // 将父节点和新增节点调换，为下面右旋做准备
+                        // 将父节点和新增节点调换
                         node = parentOf(node);
+                        // 从父节点处做左旋
+                        leftRotate(node);
                     }
 
                     // case 3 : 叔叔节点是黑色，且新增节点是左子节点
@@ -223,18 +225,62 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
 
                     // case2 ： 叔叔节点是黑色，且新增节点是左子节点
                     if (node == leftOf(parentOf(node))) {
-                        rightRotate(node);
                         node = parentOf(node);
+                        rightRotate(node);
                     }
 
                     // case 3 : 叔叔节点是黑色，且新增节点是右子节点
                     setColor(parentOf(node) , BLACK);
                     setColor(parentOf(parentOf(node)) , RED);
-                    leftRotate(node);
+                    leftRotate(parentOf(parentOf(node)));
                 }
             }
         }
+        // root节点肯定是黑色
+        root.color = BLACK;
     }
+
+    /**
+     * 根据key移除节点 <br>
+     * @Date 2021/08/13 10:28
+     * @Param [key]
+     * @return V
+     */
+    public V remove(K key){
+        // 1. 根据需要删除的key 找到对应的Node节点
+        RBNode node = getNode(key);
+        if(node == null){
+            // 不存在
+            return null;
+        }
+        V oldValue = (V) node.v;
+        // 具体删除节点的方法
+        deleteEntry(node);
+        return oldValue;
+    }
+
+    /**
+     * 根据key找到对应node <br>
+     * @Date 2021/08/13 10:29
+     * @Param [key]
+     * @return com.example.datastructure.rbtree.RBTree.RBNode
+     */
+    private RBNode getNode(K key) {
+        RBNode node = this.root;
+        while(node != null){
+            int cmp = key.compareTo((K) node.k);
+            if(cmp < 0){
+                node = node.left;
+            }else if(cmp > 0){
+                node = node.right;
+            }else{
+                // 表示找到了对应的节点
+                return node;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * 删除节点操作. <br>
