@@ -1,6 +1,6 @@
 package com.example.datastructure.rbtree;
 
-import com.sun.org.apache.regexp.internal.RE;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -178,9 +178,14 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
      */
     private void fixAfterInsertion( RBNode<K,V> node) {
         node.color = RED;
+        // 父节点是红色的，才需要调整，黑色节点直接新增就行
         while (node != null && node != root && node.parent.color == RED) {
+            // 父节点是祖父节点的左节点
             if (parentOf(node) == leftOf(parentOf(parentOf(node)))) {
+                // 找到叔叔节点
                 RBNode<K,V> y = rightOf(parentOf(parentOf(node)));
+
+                // case1 : 叔叔节点也是红色
                 if (y != null && colorOf(y) == RED) {
                     setColor(parentOf(node) , BLACK);
                     setColor(y , BLACK);
@@ -188,17 +193,26 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                     node = parentOf(parentOf(node));
                 }
                 else {
+
+                    // case2 ： 叔叔节点是黑色，且新增节点是右子节点
                     if (node == rightOf(parentOf(node))) {
-                        leftRotate(node);
+                        // 从父节点处做左旋
+                        leftRotate(parentOf(node));
+                        // 将父节点和新增节点调换，为下面右旋做准备
                         node = parentOf(node);
                     }
+
+                    // case 3 : 叔叔节点是黑色，且新增节点是左子节点
                     setColor(parentOf(node) , BLACK);
                     setColor(parentOf(parentOf(node)) , RED);
-                    rightRotate(node);
+                    rightRotate(parentOf(parentOf(node)));
                 }
             }
             else {
+                // 找到叔叔节点
                 RBNode<K,V> y = leftOf(parentOf(parentOf(node)));
+
+                // case1 : 叔叔节点也是红色
                 if (y != null && colorOf(y) == RED) {
                     setColor(parentOf(node) , BLACK);
                     setColor(y , BLACK);
@@ -206,10 +220,14 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                     node = parentOf(parentOf(node));
                 }
                 else {
+
+                    // case2 ： 叔叔节点是黑色，且新增节点是左子节点
                     if (node == leftOf(parentOf(node))) {
                         rightRotate(node);
                         node = parentOf(node);
                     }
+
+                    // case 3 : 叔叔节点是黑色，且新增节点是右子节点
                     setColor(parentOf(node) , BLACK);
                     setColor(parentOf(parentOf(node)) , RED);
                     leftRotate(node);
@@ -220,11 +238,17 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
 
     /**
      * 删除节点操作. <br>
+     *     有三种情况：
+     *     1：删除叶子节点，直接删除
+     *     2：删除有一个子节点的情况，找到替换节点
+     *     3：如果删除的节点右两个子节点，此时需要找到前驱节点或者后继节点
      * @Date 2021/08/12 17:35
      * @Param [node]
      * @return void
      */
     public void deleteEntry(RBNode<K,V> node) {
+
+        // 3、node节点有两个子节点的情况，找到前驱节点，复制前驱节点的元素给node节点，同时改变指针
         if (node.left != null && node.right != null) {
             RBNode<K,V> s = predecessor(node);
             node.k = s.k;
@@ -232,35 +256,42 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
             node = s;
         }
 
+        // 2、删除有一个子节点的情况找到替换节点
         RBNode<K,V> replacement = node.left != null? node.left : node.right;
-
         if (replacement != null) {
+            // 改变指针
             replacement.parent = node.parent;
             if (node.parent == null ){
+                // node是root节点
                 root = replacement;
             }
             else if (node == node.parent.left){
+                // 替换为左节点
                 node.parent.left = replacement;
             }
             else {
+                // 替换为右节点
                 node.parent.right = replacement;
             }
-
+            // 指针都指向null，等待GC
             node.left = node.right = node.parent = null;
-
+            // 红黑树平衡
             if (node.color == BLACK) {
                 fixAfterDeletion(replacement);
             }
         }
         else if (node.parent == null) {
+            // 说明要删除的是root节点
             root = null;
         }
         else {
+            // 1、node节点是叶子节点
 
+            // 先调整
             if (node.color == BLACK) {
-                fixAfterDeletion(replacement);
+                fixAfterDeletion(node);
             }
-
+            // 再删除
             if (node.parent != null) {
                 if (node == node.parent.left) {
                     node.parent.left = null;
@@ -281,9 +312,11 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
      */
     private void fixAfterDeletion (RBNode<K,V> node) {
         while (node != root && colorOf(node) == BLACK) {
+            // 是左子节点的情况
             if (node == leftOf(parentOf(node))) {
+                // 找到兄弟节点
                 RBNode<K,V> sib = rightOf(parentOf(node));
-
+                // case1: node的兄弟节点是红色的
                 if (colorOf(sib) == RED) {
                     setColor(sib , BLACK);
                     setColor(parentOf(node) , RED);
@@ -291,7 +324,7 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                     // 找到真正的兄弟节点
                     sib = rightOf(parentOf(node));
                 }
-
+                // case2: node的兄弟节点是黑色的，且两个子节点也都是黑色的
                 if (colorOf(leftOf(node)) == BLACK && colorOf(rightOf(node)) == BLACK) {
                     // 情况比较复杂
                     setColor(sib , RED);
@@ -299,24 +332,30 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                     node = parentOf(node);
                 }
                 else {
+                    //case3: node的兄弟节点是黑色的，且左子节点是红色，右子节点是黑色
                     if (colorOf(rightOf(sib)) == BLACK) {
+                        // 这种情况需要变色，同时右旋
                         setColor(sib , RED);
                         setColor(leftOf(sib) , BLACK);
                         rightRotate(sib);
+                        // 重新调整兄弟节点
                         sib = rightOf(parentOf(node));
                     }
+                    //case4: node的兄弟节点是黑色的，且右子节点是红色，左子节点任意颜色
                     setColor(sib , colorOf(parentOf(node)));
                     setColor(parentOf(node) , BLACK);
                     setColor(rightOf(sib) , BLACK);
                     leftRotate(parentOf(node));
+                    // 跳出循环
                     node = root;
                 }
 
             }
 
-            else {
+            else { // 与上面逻辑对称
+                // 找到兄弟节点
                 RBNode<K,V> sib = leftOf(parentOf(node));
-
+                // Case 1: node的兄弟是红色的
                 if (colorOf(sib) == RED) {
                     setColor(sib , BLACK);
                     setColor(parentOf(node) , RED);
@@ -324,7 +363,7 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                     // 找到真正的兄弟节点
                     sib = leftOf(parentOf(node));
                 }
-
+                // Case 2: node的兄弟是黑色，且的俩个子节点都是黑色的
                 if (colorOf(rightOf(node)) == BLACK && colorOf(leftOf(node)) == BLACK) {
                     // 情况比较复杂
                     setColor(sib , RED);
@@ -332,25 +371,30 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                     node = parentOf(node);
                 }
                 else {
+                    // Case 3: node的兄弟是黑色的，并且左子节点是红色，右子节点为黑色
                     if (colorOf(leftOf(sib)) == BLACK) {
                         setColor(sib , RED);
                         setColor(rightOf(sib) , BLACK);
                         leftRotate(sib);
+                        // 重新调整叔叔节点的位置
                         sib = leftOf(parentOf(node));
                     }
+                    // Case 4: node的兄弟是黑色的；并且左子节点是红色的，右子节点任意颜色
                     setColor(sib , colorOf(parentOf(node)));
                     setColor(parentOf(node) , BLACK);
                     setColor(leftOf(sib) , BLACK);
                     rightRotate(parentOf(node));
+                    // 跳出循环
                     node = root;
                 }
             }
         }
+        // 替代节点是红色节点，直接然后
         setColor(node , BLACK);
     }
 
     /**
-     * 查找前驱节点 <br>
+     * 查找后继节点，后继节点就是往右查找，找到最小值<br>
      * @Author mazq
      * @Date 2021/08/12 17:17
      * @Param [node]
@@ -360,12 +404,15 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
         if (node == null) {
             return null;
         } else if (node.right != null) {
+            // 取到右节点
             RBNode<K , V> p = node.right;
+            // 往左查找，找到最小值
             while(p.left != null) {
                 p = p.left;
             }
             return p;
         } else {
+            // 比较少见的情况，该节点没有右子节点，往上遍历
             RBNode<K ,V> p = node.parent;
             RBNode<K , V> ch = node;
             while (p != null && ch == p.right) {
@@ -377,7 +424,7 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
     }
 
     /**
-     * 查找后继节点 <br>
+     * 查找前驱节点 <br>
      * @Author mazq
      * @Date 2021/08/12 17:17
      * @Param [node]
@@ -387,12 +434,15 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
         if (node == null) {
             return null;
         } else if (node.left != null) {
+            // 找到左节点
             RBNode<K , V> p = node.left;
+            // 往右查找，找到最大值
             while(p.right != null) {
                 p = p.right;
             }
             return p;
         } else {
+            // 比较少见的情况，该节点没有左子节点，往上遍历
             RBNode<K ,V> p = node.parent;
             RBNode<K , V> ch = node;
             while (p != null && ch == p.left) {
