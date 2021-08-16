@@ -435,12 +435,12 @@ public class RBTree<K extends Comparable<K> , V> implements Serializable {
                 }
             }
         }
-        // 替代节点是红色节点，直接然后
+        // 替代节点是红色节点，直接涂黑
         setColor(node , BLACK);
     }
 
     /**
-     * 查找后继节点，后继节点就是往右查找，找到最小值<br>
+     * 查找后继节点，先定位到右节点，然后往左查找，找到最小值<br>
      * @Author mazq
      * @Date 2021/08/12 17:17
      * @Param [node]
