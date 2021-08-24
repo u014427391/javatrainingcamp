@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-08-19T12:16:03.646Z" agent="5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36" etag="sLfVvIaRgliU2sHgv8Eh" version="14.9.8" type="github" pages="7">
+<mxfile host="app.diagrams.net" modified="2021-08-24T04:55:02.724Z" agent="5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36" etag="J1Ea0Or4Mxz8QU6dbMqh" version="14.9.8" type="github" pages="8">
   <diagram id="zSwK5f2N5CJaC8SkvJs-" name="数组画图">
     <mxGraphModel dx="1108" dy="393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -50,7 +50,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="cepfwp2v4G1p7JRhQnl4" name="链表画图">
-    <mxGraphModel dx="1108" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1108" dy="393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="zBCioqivSeFxnxsH1v_N-0" />
         <mxCell id="zBCioqivSeFxnxsH1v_N-1" parent="zBCioqivSeFxnxsH1v_N-0" />
@@ -257,7 +257,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="GmswEXdujeBvTEgXyXVm" name="二叉树画图">
-    <mxGraphModel dx="1108" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1108" dy="393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="sW6OsoxVYcKpWPkz4-fE-0" />
         <mxCell id="sW6OsoxVYcKpWPkz4-fE-1" parent="sW6OsoxVYcKpWPkz4-fE-0" />
@@ -787,7 +787,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="sl5ASHyYqHohGeCUFFpw" name="2-3-4树画图">
-    <mxGraphModel dx="3108" dy="834" grid="1" gridSize="19" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="3108" dy="793" grid="1" gridSize="19" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2920,7 +2920,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="01mibDl56lw5fFbKweGP" name="Java集合">
-    <mxGraphModel dx="1304" dy="462" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1108" dy="393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="wHDiJGsCxvrmEZRIleBF-0" />
         <mxCell id="wHDiJGsCxvrmEZRIleBF-1" parent="wHDiJGsCxvrmEZRIleBF-0" />
@@ -3127,6 +3127,104 @@
             <mxPoint x="180" y="330" as="sourcePoint" />
             <mxPoint x="220" y="305" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="krcH6znw6OxAbTaUg3jq" name="并发编程">
+    <mxGraphModel dx="1108" dy="393" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-0" />
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-1" parent="Cprizu-Ba1mFitYJ8FWP-0" />
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-3" value="New新线程" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB366;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="110" y="60" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-4" value="Runnable可运行状态&lt;span style=&quot;white-space: pre&quot;&gt;	&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#99FF99;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="240" y="150" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-5" value="Blocked阻塞状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB366;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="390" y="40" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-6" value="Waiting等待状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFF99;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="459" y="160" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-7" value="Timed Waiting定时等待状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFF66;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="430" y="320" width="90" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-8" value="Terminated状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB366;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="110" y="230" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-9" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.1;entryY=0.033;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-3" target="Cprizu-Ba1mFitYJ8FWP-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="90" as="sourcePoint" />
+            <mxPoint x="350" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-10" value="开始" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=45;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="190" y="130" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-11" value="" style="endArrow=classic;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-4" target="Cprizu-Ba1mFitYJ8FWP-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="160" as="sourcePoint" />
+            <mxPoint x="390" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-12" value="等待同步锁" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-45;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="310" y="100" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-13" value="" style="endArrow=classic;html=1;exitX=0.111;exitY=1.05;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.056;entryY=0.117;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-5" target="Cprizu-Ba1mFitYJ8FWP-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="110" as="sourcePoint" />
+            <mxPoint x="340" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-16" value="抢到同步锁" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-45;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="344" y="130" width="70" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-17" value="" style="endArrow=classic;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-4" target="Cprizu-Ba1mFitYJ8FWP-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="290" as="sourcePoint" />
+            <mxPoint x="270.71067811865476" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-18" value="执行完成" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-40;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="178.83" y="196.79" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-26" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" target="Cprizu-Ba1mFitYJ8FWP-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="195" as="sourcePoint" />
+            <mxPoint x="480" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-27" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="200" as="sourcePoint" />
+            <mxPoint x="450" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-28" value="等待其它线程的通知" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="349" y="160" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-30" value="收到通知notify，继续执行" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="359" y="200" width="101" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-31" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-4" target="Cprizu-Ba1mFitYJ8FWP-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="310" y="300" as="sourcePoint" />
+            <mxPoint x="360" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-32" value="" style="endArrow=classic;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" source="Cprizu-Ba1mFitYJ8FWP-7" target="Cprizu-Ba1mFitYJ8FWP-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="370" y="300" as="sourcePoint" />
+            <mxPoint x="340" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-33" value="超过了等待时间，或者收到了通知，继续执行" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=40;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="211.46" y="276.46" width="180" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Cprizu-Ba1mFitYJ8FWP-36" value="有超时时间的等待其它线程的通知" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=40;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="310" y="256.46" width="160" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
