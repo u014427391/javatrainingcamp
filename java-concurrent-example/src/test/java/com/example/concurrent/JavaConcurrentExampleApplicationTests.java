@@ -26,6 +26,8 @@ class JavaConcurrentExampleApplicationTests {
         if (future.isDone()) {
             System.out.println("callableTask返回参数:"+future.get());
         }
+        // 避免内存泄露，记得关闭线程池
+        service.shutdown();
 
         new Thread(() ->{
             System.out.println(Thread.currentThread().getName());
@@ -60,6 +62,14 @@ class JavaConcurrentExampleApplicationTests {
         @Override
         public Integer call() {
             return ThreadLocalRandom.current().ints(0, (99 + 1)).limit(1).findFirst().getAsInt();
+        }
+    }
+
+
+    class RunnableTask implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName());
         }
     }
 
