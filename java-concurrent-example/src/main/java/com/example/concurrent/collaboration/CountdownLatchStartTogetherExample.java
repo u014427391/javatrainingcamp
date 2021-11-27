@@ -4,7 +4,7 @@ package com.example.concurrent.collaboration;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
-public class StartTogerCountdownLatchExample {
+public class CountdownLatchStartTogetherExample {
 
     public static void main(String[] args) throws InterruptedException {
         final CountDownLatch cdl = new CountDownLatch(1);
