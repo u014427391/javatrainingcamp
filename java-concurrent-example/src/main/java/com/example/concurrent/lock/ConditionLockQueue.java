@@ -2,8 +2,6 @@ package com.example.concurrent.lock;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -40,9 +38,10 @@ public class ConditionLockQueue {
         try {
             while (queue.size() == capacity) {
                 productCondition.await();
+                System.out.println("产品仓库满了，不能生产！");
             }
             queue.add(obj);
-            System.out.println("[Producer]: " + obj);
+            System.out.println("[Producer]: " + obj+ ",共有："+queue.size());
             consumeCondition.signal();
         } finally {
             lock.unlock();
@@ -55,9 +54,10 @@ public class ConditionLockQueue {
         try {
             while (queue.size() == 0) {
                 consumeCondition.await();
+                System.out.println("没有产品了，需要生产！");
             }
             Object prod =  queue.remove(0);
-            System.out.println("[Consumer]: " + prod);
+            System.out.println("[Consumer]: " + prod + ",共有："+queue.size());
             productCondition.signal();
         }finally {
             lock.unlock();
@@ -94,10 +94,14 @@ public class ConditionLockQueue {
             }
         };
 
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
-        executorService.execute(produceTask);
-        executorService.execute(consumeTask);
-        executorService.shutdown();
+        //3个生产者
+        new Thread(produceTask).start();
+        new Thread(produceTask).start();
+        new Thread(produceTask).start();
+        //3个消费者
+        new Thread(consumeTask).start();
+        new Thread(consumeTask).start();
+        new Thread(consumeTask).start();
 
     }
 
