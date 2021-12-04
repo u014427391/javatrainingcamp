@@ -58,7 +58,6 @@ public class AtomicStampedReferenceExample {
         });
         tt1.start();
         tt2.start();
-        tt1.join();
-        tt2.join();
+
     }
 }
