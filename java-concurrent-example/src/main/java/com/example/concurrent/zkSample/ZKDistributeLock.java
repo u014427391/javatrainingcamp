@@ -27,9 +27,8 @@ public class ZKDistributeLock implements Lock {
 
     @Override
     public void lock() {
-        if (!tryLock()) {
+        while (!tryLock()) {
             waitForLock();
-            lock();
         }
     }
 

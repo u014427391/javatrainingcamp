@@ -1,18 +1,16 @@
 package com.example.concurrent.zkSample;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
 import java.util.concurrent.locks.Lock;
 
-@Service
-@Slf4j
+//@Service
+//@Slf4j
 public class OrderServiceInvoker implements OrderService{
 
 
     @Override
     public void createOrder() {
-        Lock zkLock = new ZKDistributeLock("/zk-test");
+        //Lock zkLock = new ZKDistributeLock("/zk-test");
+        Lock zkLock = new ZKDistributeImproveLock("/zk-test");
         String orderCode = null;
         try {
             zkLock.lock();
