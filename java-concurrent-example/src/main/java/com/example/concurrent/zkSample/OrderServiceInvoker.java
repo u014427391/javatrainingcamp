@@ -9,19 +9,21 @@ import java.util.concurrent.locks.Lock;
 @Slf4j
 public class OrderServiceInvoker implements OrderService{
 
-    private Lock zkLock = new ZKDistributeLock();
 
     @Override
     public void createOrder() {
-        zkLock.lock();
+        Lock zkLock = new ZKDistributeLock("/zk-test");
+        String orderCode = null;
         try {
-            String orderCode = OrderCodeGenerator.generatorOrderCode();
-            if (log.isInfoEnabled()) {
-                log.info("订单编码为:{}" , orderCode);
-            }
+            zkLock.lock();
+            orderCode = OrderCodeGenerator.generatorOrderCode();
 
         } finally {
             zkLock.unlock();
         }
+        System.out.println(String.format("thread name : %s , orderCode : %s" ,
+                Thread.currentThread().getName(),
+                orderCode));
     }
+
 }

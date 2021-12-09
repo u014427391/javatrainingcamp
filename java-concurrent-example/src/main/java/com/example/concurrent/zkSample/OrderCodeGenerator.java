@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class OrderCodeGenerator {
 
     private static final String DATE_FORMAT = "yyyyMMddHHmmss";
-    private static AtomicInteger ai  = new AtomicInteger(0);;
+    private static AtomicInteger ai  = new AtomicInteger(0);
+    private static int i = 0;
 
     private static ThreadLocal<SimpleDateFormat> threadLocal = new ThreadLocal<SimpleDateFormat>() {
         @Override
@@ -25,13 +26,11 @@ public class OrderCodeGenerator {
     public static String generatorOrderCode() {
         try {
             return getDateFormat().format(new Date(System.currentTimeMillis()))
-                    + ai.getAndIncrement();
+                    + i++;
         } finally {
             threadLocal.remove();
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new OrderCodeGenerator().generatorOrderCode());
-    }
+
 }
