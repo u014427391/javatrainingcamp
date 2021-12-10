@@ -27,7 +27,6 @@ public class ZKDistributeImproveLock implements Lock {
             try {
                 this.zkClient.createPersistent(localPath);
             } catch (ZkNodeExistsException e) {
-                System.err.println("创建新的zookeeper节点");
             }
         }
     }
@@ -41,23 +40,30 @@ public class ZKDistributeImproveLock implements Lock {
 
     private void waitForLock() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        // 注册watcher
         IZkDataListener listener = new IZkDataListener() {
             @Override
             public void handleDataChange(String dataPath, Object data) throws Exception {
             }
             @Override
             public void handleDataDeleted(String dataPath) throws Exception {
+                // 监听到锁释放，唤醒线程
                 countDownLatch.countDown();
             }
         };
         zkClient.subscribeDataChanges(beforePath, listener);
 
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        // 线程等待
+        if (zkClient.exists(beforePath)) {
+            try {
+                countDownLatch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
+        // 取消注册
         zkClient.unsubscribeDataChanges(beforePath , listener);
 
     }
@@ -72,12 +78,16 @@ public class ZKDistributeImproveLock implements Lock {
         if (this.currentPath == null) {
             currentPath = zkClient.createEphemeralSequential(localPath +"/" , "123");
         }
+        // 获取Znode节点下面的所有子节点
         List<String> children = zkClient.getChildren(localPath);
+        // 列表排序
         Collections.sort(children);
-        if (currentPath.equals(localPath + "/" + children.get(0))) {
+        if (currentPath.equals(localPath + "/" + children.get(0))) { // 当前节点是第1个节点
             return true;
         } else {
+            //得到当前的索引号
             int index = children.indexOf(currentPath.substring(localPath.length() + 1));
+            //取到前一个
             beforePath = localPath + "/" + children.get(index - 1);
         }
         return false;

@@ -8,7 +8,7 @@ public class ConcurrentDistributeTest {
 
     public static void main(String[] args) {
         // 多线程数
-        int threadSize = 30;
+        int threadSize = 20;
         // 创建多线程循环屏障
         CyclicBarrier cyclicBarrier = new CyclicBarrier(threadSize , ()->{
             System.out.println("准备完成！");

@@ -33,22 +33,26 @@ public class ZKDistributeLock implements Lock {
     }
 
     private void waitForLock() {
+        // 创建countdownLatch协同
         CountDownLatch countDownLatch = new CountDownLatch(1);
 
+        // 注册watcher监听
         IZkDataListener listener = new IZkDataListener() {
             @Override
             public void handleDataChange(String path, Object o) throws Exception {
-                System.out.println("zookeeper data has change!!!");
+                //System.out.println("zookeeper data has change!!!");
             }
 
             @Override
             public void handleDataDeleted(String s) throws Exception {
                 // System.out.println("zookeeper data has delete!!!");
+                // 监听到锁释放了，释放线程
                 countDownLatch.countDown();
             }
         };
         zkClient.subscribeDataChanges(localPath , listener);
 
+        // 线程等待
         if (zkClient.exists(localPath)) {
             try {
                 countDownLatch.await();
@@ -57,6 +61,7 @@ public class ZKDistributeLock implements Lock {
             }
         }
 
+        // 取消注册
         zkClient.unsubscribeDataChanges(localPath , listener);
 
     }
