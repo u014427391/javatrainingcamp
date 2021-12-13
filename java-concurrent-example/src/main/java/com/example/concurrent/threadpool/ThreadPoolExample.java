@@ -19,15 +19,35 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolExample {
 
     public static void main(String[] args) {
-        ExecutorService service = new ThreadPoolExecutor(2, 5,
+        ExecutorService orderThreadPool = new ThreadPoolExecutor(2, 5,
                 60L, TimeUnit.SECONDS,
-                new ArrayBlockingQueue(5));
-        service.execute(() ->{
-            System.out.println(String.format("thread name:%s",Thread.currentThread().getName()));
-        });
+                new ArrayBlockingQueue(5),
+                new NamedThreadFactory("orderPool"));
+        ExecutorService sendThreadPool = new ThreadPoolExecutor(2, 5,
+                60L, TimeUnit.SECONDS,
+                new ArrayBlockingQueue(5),
+                new NamedThreadFactory("sendPool"));
+        orderThreadPool.execute(new OrderTask());
+        sendThreadPool.execute(new SendTask());
         // 避免内存泄露，记得关闭线程池
-        service.shutdown();
-
-
+        orderThreadPool.shutdown();
+        sendThreadPool.shutdown();
     }
+
+    static class OrderTask implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(String.format("thread name:%s",Thread.currentThread().getName()));
+            System.out.println("保存订单信息");
+        }
+    }
+
+    static class SendTask implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(String.format("thread name:%s",Thread.currentThread().getName()));
+            System.out.println("保存发货信息");
+        }
+    }
+
 }

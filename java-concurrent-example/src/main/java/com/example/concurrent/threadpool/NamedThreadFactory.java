@@ -20,9 +20,9 @@ public class NamedThreadFactory implements ThreadFactory {
         group = (s != null) ? s.getThreadGroup() :
                 Thread.currentThread().getThreadGroup();
         threadFactoryName = StringUtils.isEmpty(threadFactoryName)
-                ? "pool-" +poolNumber.getAndIncrement()
-                : threadFactoryName;
-        namePrefix = threadFactoryName + "-thread-";
+                ? "pool-"
+                : threadFactoryName + "-";
+        namePrefix = threadFactoryName + poolNumber.getAndIncrement()+ "-thread-";
     }
     @Override
     public Thread newThread(Runnable r) {
