@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-14T09:13:09.933Z" agent="5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="KIAt9zI6xFYpGwspZo31" version="16.5.6" type="github" pages="8">
+<mxfile host="app.diagrams.net" modified="2022-04-14T10:00:57.970Z" agent="5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="pUbv29_B2GjWcZOLl-AM" version="16.5.6" type="github" pages="8">
   <diagram id="zSwK5f2N5CJaC8SkvJs-" name="数组画图">
     <mxGraphModel dx="1038" dy="453" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -4203,7 +4203,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="krcH6znw6OxAbTaUg3jq" name="并发编程">
-    <mxGraphModel dx="1012" dy="447" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1625" dy="453" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="Cprizu-Ba1mFitYJ8FWP-0" />
         <mxCell id="Cprizu-Ba1mFitYJ8FWP-1" parent="Cprizu-Ba1mFitYJ8FWP-0" />
@@ -5775,6 +5775,36 @@
         </mxCell>
         <mxCell id="uwmevVnoZIk-iNN_15KU-16" value="Thread" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
           <mxGeometry x="-325" y="3968" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-17" value="Thread" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-701.5" y="4404.5" width="254" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-18" value="- threadLocals: ThreadLocal.ThreadLocalMap" style="text;strokeColor=#d79b00;fillColor=#ffe6cc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;gradientColor=none;" vertex="1" parent="uwmevVnoZIk-iNN_15KU-17">
+          <mxGeometry y="26" width="254" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-32" value="" style="html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-387.5" y="4303" width="268" height="304" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-34" value="" style="html=1;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-342.5" y="4372" width="170.5" height="217" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-37" value="ThreadLocal" style="html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-387" y="4303" width="267" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-38" value="ThreadLocalMap" style="html=1;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-342.5" y="4372" width="169.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-39" value="-table : Entry[]" style="html=1;align=left;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-342.5" y="4412" width="169.5" height="37" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-40" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Entry&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- key: ThreadLocal&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- value: Object&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#cdeb8b;strokeColor=#36393d;" vertex="1" parent="Cprizu-Ba1mFitYJ8FWP-1">
+          <mxGeometry x="-330" y="4461" width="144" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="uwmevVnoZIk-iNN_15KU-42" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="Cprizu-Ba1mFitYJ8FWP-1" target="uwmevVnoZIk-iNN_15KU-17">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-336" y="4431" as="sourcePoint" />
+            <mxPoint x="-442" y="4497" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
