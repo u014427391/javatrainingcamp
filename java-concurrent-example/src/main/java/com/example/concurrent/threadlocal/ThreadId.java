@@ -3,7 +3,6 @@ package com.example.concurrent.threadlocal;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ThreadId {
-    private static final ThreadLocal<?> t1 = new ThreadLocal<>();
     // Atomic integer containing the next thread ID to be assigned
     private static final AtomicInteger nextId = new AtomicInteger(0);
     // Thread local variable containing each thread's ID
